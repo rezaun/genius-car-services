@@ -7,13 +7,13 @@ const Header = () => {
         <>
             <Navbar bg="primary" variant="dark">
                 <Container>
-                    <Navbar.Brand href="#home">
+                    <Navbar.Brand href="./">
                         <img src={logo} height="30px" alt="" />
                     </Navbar.Brand>
                     <Nav className="me-auto">
-                        <Nav.Link href="#home">Home</Nav.Link>
-                        <Nav.Link href="#features">Features</Nav.Link>
-                        <Nav.Link href="#pricing">Pricing</Nav.Link>
+                        <Nav.Link href="./">Home</Nav.Link>
+                        <Nav.Link href="#service">Service</Nav.Link>
+                        <Nav.Link href="#expert">Expert</Nav.Link>
                     </Nav>
                 </Container>
             </Navbar>
