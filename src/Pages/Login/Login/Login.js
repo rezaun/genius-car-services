@@ -1,18 +1,34 @@
+import { signInWithEmailAndPassword } from 'firebase/auth';
 import React, { useRef } from 'react';
 import { Button, Form } from 'react-bootstrap';
+import { useCreateUserWithEmailAndPassword } from 'react-firebase-hooks/auth';
 import { Link, useNavigate } from 'react-router-dom';
+import auth from '../../../firebase.init';
 
 const Login = () => {
     const emailRef = useRef('');
     const passwordRef = useRef('');
     const navigate = useNavigate();
 
-    const handleSubmit = event =>{
+    const [
+        createUserWithEmailAndPassword,
+        user,
+        loading,
+        error,        
+      ] = useCreateUserWithEmailAndPassword(auth);
+
+
+    if(user){
+        navigate('/home');
+    }
+
+
+    const handleSubmit = event => {
         event.preventDefault();
         const email =emailRef.current.value;
         const password =passwordRef.current.value;
 
-        console.log(email,password);
+        signInWithEmailAndPassword(email, password);
     }
     const navigateRegister = event =>{
         navigate('/register')
@@ -23,7 +39,7 @@ const Login = () => {
             <Form onSubmit={handleSubmit}>
                 <Form.Group className="mb-3" controlId="formBasicEmail">
                     <Form.Label>Email address</Form.Label>
-                    <Form.Control ref={emailRef} type="email" placeholder="Enter email" required />
+                    <Form.Control ref={emailRef} type="email" name='' placeholder="Enter email" required />
                     <Form.Text className="text-muted">
                         We'll never share your email with anyone else.
                     </Form.Text>
